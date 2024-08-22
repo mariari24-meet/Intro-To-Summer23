@@ -3,7 +3,7 @@ def create_youtube_video (title,description):
 	"description" : description , 
 	"likes" : 0 ,
 	"dislikes" : 0 ,
-	"comments" : {"username": None}
+	"comments" : {}
 	}
 	return youtube
 
@@ -18,11 +18,17 @@ def dislike (youtube):
 	return youtube
 
 def add_comment(youtube,username,comment_text):
-	youtube ["comments"]["username"]= comment_text
+	youtube ["comments"]={}
+	youtube ["comments"][username]comment_text
 	return youtube 
 
-video = create_youtube_video("video1","this is video1")
-video = like(video)
-video = dislike(video)
-video = add_comment("video", "maria","its beautiful")
+
+	video = create_youtube_video("video1", "this is video1")
+
+
+for _ in range (495):
+	video = like(video)
+	video = dislike(video)
+	video = add_comment(video, "user44" ,"wow")
+
 print(video)

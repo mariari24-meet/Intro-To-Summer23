@@ -1,0 +1,36 @@
+<html>
+
+<head>
+	
+<h1> is it your lucky day? </h1>
+
+
+</head>
+<body>
+	<h2>what are you going to eat today?</h2>
+
+
+	<div>
+<a href="{{ url_for('fortune') }}">fortune</a>
+</div>
+
+
+<form action="/create" method="POST">
+    <input type="text" name="birthmonth" placeholder="birthmonth">
+
+    <br>
+    
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+
+
+
+</body>
+
+
+
+
+
+</html>

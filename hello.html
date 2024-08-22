@@ -1,5 +1,8 @@
 <html>
 <head>
+
+	<script src="main.js"></script>
+
 <title>RUBIK'S CUBES </title>
 
 
@@ -11,6 +14,8 @@
     #purple { color: purple; }
 
     .important { color: yellow; }
+
+    body { background-color: lightblue; }
 </style>
 
 
@@ -25,16 +30,17 @@
 
 
 <form>
-	<p> what's your cube </p>
+	<p> what's your fav cube </p>
 	<input type="radio" name="fav_cube" value="3*3">3*3
 	<input type="radio" name="fav_cube" value="2*2">2*2
 	<input type="radio" name="fav_cube" value="4*4">4*4
 </form>
 
+<button onclick="changeBackgroundColor('pink')">Change to Pink</button>
+<button onclick="changeBackgroundColor('lightgreen')">Change to Light Green</button>
+<button onclick="changeBackgroundColor('lightyellow')">Change to Light Yellow</button>
 
-<style>
-        body { background-color: lightblue; }
-    </style>
+
 
 
 </body>
