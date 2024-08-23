@@ -25,6 +25,16 @@ def fortune(b):
 
     return render_template("fortune.html", item= random_item, food2 = food)
 
+@app.route('/' , methods=['GET' , 'POST'])
+def name() :
+    if request.method == 'GET':
+        return render_template('login.html')
+    else:
+        name = request.form['name']
+        month = request.form['birthmonth']
+        return redirect(url_for('home', n = name , m = month))
+
+   
 
 
     
