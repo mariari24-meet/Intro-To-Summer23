@@ -18,9 +18,16 @@ def fortune(b):
     possible_food = ["pasta", "rice", "nothing", "left overs", "pizza", "ice cream", "burgers", "eaten steak", "bad meat", "your mom's food"]
     random_item = random.choice(possible_food)
     lenth = len(b)
-    food = possible_food[lenth]
+    if lenth > 10:
+        food = "your birtday arent deffind"
+    else:
+        food = possible_food[lenth]
+
     return render_template("fortune.html", item= random_item, food2 = food)
 
+
+
+    
 
 
 
