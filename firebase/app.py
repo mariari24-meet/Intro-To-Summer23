@@ -12,23 +12,44 @@ firebaseConfig = {
   "storageBucket": "authentication-lab-5dc05.appspot.com",
   "messagingSenderId": "692129137743",
   "appId": "1:692129137743:web:87cc524988476e9658d63a", 
-  'databaseURL':""
+  'databaseURL':"https://authentication-lab-5dc05-default-rtdb.europe-west1.firebasedatabase.app"
 }
 
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
-
+db = firebase.database()
 app = Flask(__name__, template_folder='templates', static_folder='statics')
 app.config['SECRET_KEY']= 'super-secret-key'
 
 
 @app.route('/signin' , methods=['GET', 'POST'])
 def signin():
+  if request.method == 'POST':
+    email = request.form['email']
+    password = request.form['password']
+    try:
+      session["user"] = auth.sign_in_with_email_and_password(email, password)
+      session['quotes'] = []
+      return redirect(url_for('home'))
+    except Exception as e:
+      print(e)
+    return render_template("signin.html")
+
+
+
   return render_template('signin.html')
 
 
 @app.route('/home' , methods=['GET', 'POST'])
 def home():
+  if request.method == 'POST':
+    quote = request.form['quote']
+    try:
+      session['quotes'].append(quote)
+      return render_template('thanks.html')
+    except Exception as errors:
+      print(errors)
+
   return render_template('home.html')
 
 
@@ -76,9 +97,14 @@ def signup():
   #     error = "Authentication failed"
   #     return render_template("signup.html")
   # else:
-  #   return render_template("signup.html")
+  return render_template("signup.html")
 @app.route('/signout' , methods=['GET', 'POST'])
 def signout():
+  session['user'] = None
+  auth.current_user = None
+  return redirect(url_for('signin'))
+
+  return render_template("signup.html")
 
 
 if __name__ == '__main__':
